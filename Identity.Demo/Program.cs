@@ -18,8 +18,9 @@ namespace Identity.Demo
         {
             try
             {
-                string userName = "avnish.choubey@gmail.com";
+                string userName = "avnish.choubey";
                 string Password = "Password123!";
+                string Email = "avnish.choubey@gmail.com";
                 //var userStore = new UserStore<IdentityUser>();
                 //var userManager = new UserManager<IdentityUser>(userStore);
                 var userStore = new CustomerUserStore(new CustomerUserDbContext());
@@ -30,7 +31,7 @@ namespace Identity.Demo
                 //Console.WriteLine("Ceated {0}", createUser.Succeeded );
                 //Console.ReadLine();
                 //user Creation..
-                var createUser = userManager.Create(new CustomerUser { UserName  = userName, PasswordHash = Password });
+                var createUser = userManager.Create(new CustomerUser { UserName  = userName, PasswordHash = Password,Email=Email  });
                 Console.WriteLine("Ceated {0}", createUser.Succeeded);
                 Console.ReadLine();
                 ////User Claim
@@ -58,6 +59,7 @@ namespace Identity.Demo
 
             public string UserName { get; set; }
             public string PasswordHash { get; set; }
+            public string Email { get; set; }
         }
 
         public class CustomerUserDbContext : DbContext
@@ -74,6 +76,7 @@ namespace Identity.Demo
                 user.Property(x => x.Id).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
                 user.Property(x => x.UserName).IsRequired().HasMaxLength(256)
                     .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UserNameIndex") { IsUnique = true }));
+                
                 base.OnModelCreating(modelBuilder);
             }
         }
