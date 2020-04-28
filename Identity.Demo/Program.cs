@@ -31,11 +31,11 @@ namespace Identity.Demo
                 //Console.WriteLine("Ceated {0}", createUser.Succeeded );
                 //Console.ReadLine();
                 //user Creation..
-                var createUser = userManager.Create(new CustomerUser { UserName  = userName, PasswordHash = Password,Email=Email  });
-                Console.WriteLine("Ceated {0}", createUser.Succeeded);
+                var createResult = userManager.Create(new CustomerUser {UserName  = userName, Email=Email },Password ); 
+                Console.WriteLine("Created {0}", createResult.Succeeded);
                 Console.ReadLine();
                 ////User Claim
-                //var user = userManager.FindByName(userName);
+                var user = userManager.FindByName(userName);
                 //var claimResult = userManager.AddClaim(user.Id, new Claim("given_Name","avnish"));
                 //Console.WriteLine("Claim {0)", claimResult.Succeeded);
                 //Console.ReadLine();
@@ -43,6 +43,9 @@ namespace Identity.Demo
                 //bool isMatch = userManager.CheckPassword(new IdentityUser(userName), Password);
                 //Console.WriteLine("Password Match {0}", isMatch);
                 //Console.ReadLine();
+                var checkpwd = userManager.CheckPassword(user, Password); 
+                Console.WriteLine("Password Match {0}", checkpwd);
+                Console.ReadLine();
 
             }
             catch (Exception ex)
