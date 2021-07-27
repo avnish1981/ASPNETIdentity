@@ -33,7 +33,7 @@ namespace Identity.Demo
                 //user Creation..
                 var createResult = userManager.Create(new CustomerUser {UserName  = userName, Email=Email },Password ); 
                 Console.WriteLine("Created {0}", createResult.Succeeded);
-                Console.ReadLine();
+                //Console.ReadLine();
                 ////User Claim
                 var user = userManager.FindByName(userName);
                 //var claimResult = userManager.AddClaim(user.Id, new Claim("given_Name","avnish"));

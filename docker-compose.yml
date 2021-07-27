@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  identity.demo:
+    image: ${DOCKER_REGISTRY-}identitydemo
+    build:
+      context: .\Identity.Demo
+      dockerfile: Dockerfile
